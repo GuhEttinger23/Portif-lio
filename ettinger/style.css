@@ -1,0 +1,359 @@
+/* style.css - CÓDIGO CONSOLIDADO E CORRIGIDO */
+
+/* VARIÁVEIS DE COR E ESTILOS GLOBAIS */
+:root {
+    --cor-fundo-principal: #0a0a0a; /* Preto escuro */
+    --cor-fundo-secundario: #151515; /* Cinza escuro para cards */
+    --cor-texto-principal: #ffffff; /* Branco */
+    --cor-texto-secundario: #a3a3a3; /* Cinza claro */
+    --cor-acento-roxo: #7a3ee6; /* Roxo principal */
+    --padding-geral: 80px;
+    --borda-radius: 8px;
+    --transicao-rapida: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+    min-height: 100vh;
+    scroll-behavior: smooth; /* Para scroll suave em links internos */
+}
+
+h1, h2, h3 {
+    color: var(--cor-texto-principal);
+}
+
+/* ------------------------------------------ */
+/* 1. NAVEGAÇÃO E HEADER */
+/* ------------------------------------------ */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px var(--padding-geral);
+    background: var(--cor-fundo-principal);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    color: var(--cor-acento-roxo);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: var(--cor-texto-principal);
+    text-decoration: none;
+    margin-left: 35px;
+    transition: color var(--transicao-rapida);
+}
+
+.navbar a:hover {
+    color: var(--cor-acento-roxo);
+}
+
+/* Botão de Contato (Roxo Preenchido) */
+.btn-contato {
+    background: var(--cor-acento-roxo);
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: var(--cor-texto-principal) !important;
+}
+
+/* ------------------------------------------ */
+/* 2. SEÇÃO HOME (HERO) */
+/* ------------------------------------------ */
+.home {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px var(--padding-geral);
+}
+
+.home-content {
+    max-width: 50%;
+}
+
+.home-content p:first-child {
+    color: var(--cor-acento-roxo);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.home-content h1 {
+    font-size: 50px;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.home-content h1 strong {
+    color: var(--cor-acento-roxo); /* Destaque roxo para o nome */
+}
+
+.cta-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+/* Botão Principal (Roxo Preenchido) - Reutiliza o estilo do .btn-contato */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 25px;
+    background: var(--cor-acento-roxo);
+    color: var(--cor-texto-principal);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background var(--transicao-rapida);
+}
+.btn-primary:hover {
+    background: #9a68ff;
+}
+
+/* Botão Secundário (Contorno Roxo) */
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 25px;
+    background: transparent;
+    color: var(--cor-acento-roxo);
+    border: 2px solid var(--cor-acento-roxo);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background var(--transicao-rapida), color var(--transicao-rapida);
+}
+.btn-secondary:hover {
+    background: var(--cor-acento-roxo);
+    color: var(--cor-texto-principal);
+}
+
+/* EFEITO DO ANEL NO AVATAR */
+.home-avatar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ring-effect {
+    width: 350px; 
+    height: 350px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Cria o anel de luz roxo */
+    background: radial-gradient(circle at center, rgba(122, 62, 230, 0.1) 0%, rgba(122, 62, 230, 0.5) 50%, rgba(122, 62, 230, 0) 70%);
+    box-shadow: 0 0 40px rgba(122, 62, 230, 0.8);
+}
+
+.ring-effect img {
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid var(--cor-fundo-principal); 
+    z-index: 2;
+}
+
+
+/* ------------------------------------------ */
+/* 3. CARROSSEL INFINITO (TAGS/FILTROS) */
+/* ------------------------------------------ */
+.carrossel-container {
+    overflow: hidden;
+    background-color: rgba(122, 62, 230, 0.1);
+    padding: 15px 0;
+    white-space: nowrap;
+    border-top: 1px solid rgba(122, 62, 230, 0.2);
+    border-bottom: 1px solid rgba(122, 62, 230, 0.2);
+    margin-top: 50px;
+}
+
+.carrossel-faixa {
+    display: flex;
+    gap: 30px;
+    animation: moveCarrossel 40s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes moveCarrossel {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.tag-item {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--cor-texto-principal);
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.tag-item:hover,
+.tag-item.active {
+    background-color: rgba(122, 62, 230, 0.5); 
+}
+
+
+/* ------------------------------------------ */
+/* 4. SEÇÃO PROJETOS (GRID DE CARDS) */
+/* ------------------------------------------ */
+.projetos {
+    padding: var(--padding-geral);
+    text-align: center;
+}
+
+.projetos h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.projetos .subtitle {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 50px;
+}
+
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+}
+
+.projeto-card {
+    background: var(--cor-fundo-secundario);
+    border-radius: var(--borda-radius);
+    padding: 20px;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+    /* Borda sutil e roxa */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 
+                0 0 0 1px rgba(122, 62, 230, 0.1); 
+    transition: transform var(--transicao-rapida), box-shadow var(--transicao-rapida);
+}
+
+.projeto-card:hover {
+    transform: translateY(-5px);
+    /* Brilho maior ao passar o mouse */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 
+                0 0 15px rgba(122, 62, 230, 0.7); 
+}
+
+.projeto-card img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--borda-radius);
+    margin-bottom: 15px;
+}
+
+.projeto-card h3 {
+    color: var(--cor-acento-roxo);
+    margin-bottom: 5px;
+}
+
+.card-tags {
+    margin-top: 10px;
+}
+
+.tech-tag {
+    display: inline-block;
+    background: #282828;
+    color: var(--cor-texto-secundario);
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+/* ------------------------------------------ */
+/* 5. SEÇÃO SERVIÇOS (GRID DE CARDS) - NOVO */
+/* ------------------------------------------ */
+.servicos {
+    padding: var(--padding-geral);
+    text-align: center;
+}
+
+.servicos .subtitle {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 50px;
+}
+
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.servico-item {
+    background: var(--cor-fundo-secundario);
+    padding: 25px;
+    border-radius: var(--borda-radius);
+    text-align: left;
+    border: 1px solid rgba(122, 62, 230, 0.2); 
+    transition: transform 0.3s ease;
+}
+
+.servico-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(122, 62, 230, 0.3);
+}
+
+.servico-item h3 {
+    color: var(--cor-acento-roxo);
+    margin-bottom: 10px;
+}
+
+/* ------------------------------------------ */
+/* 6. SEÇÃO FERRAMENTAS (LOGOS) - NOVO */
+/* ------------------------------------------ */
+.ferramentas {
+    padding: var(--padding-geral);
+    text-align: center;
+}
+.ferramentas h2 {
+    margin-bottom: 50px;
+}
+
+.ferramentas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.ferramenta-logo {
+    text-align: center;
+    width: 100px; 
+}
+
+.ferramenta-logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+    background: #1e1e1e;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
