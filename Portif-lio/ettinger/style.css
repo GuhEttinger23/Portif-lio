@@ -1,0 +1,803 @@
+/* style.css - CÓDIGO CONSOLIDADO E CORRIGIDO */
+
+/* VARIÁVEIS DE COR E ESTILOS GLOBAIS */
+:root {
+  --cor-fundo-principal: #0a0a0a; /* Preto escuro */
+  --cor-fundo-secundario: #151515; /* Cinza escuro para cards */
+  --cor-texto-principal: #ffffff; /* Branco */
+  --cor-texto-secundario: #a3a3a3; /* Cinza claro */
+  --cor-acento-roxo: #7a3ee6; /* Roxo principal */
+  --padding-geral: 80px;
+  --borda-radius: 8px;
+  --transicao-rapida: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* CORREÇÃO: APLICAÇÃO DA NOVA FONTE */
+  font-family: "Noto Serif Hentaigana", serif;
+}
+
+body {
+  background: var(--cor-fundo-principal);
+  color: var(--cor-texto-principal);
+  line-height: 1.6;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--cor-texto-principal);
+}
+
+section {
+  padding: var(--padding-geral);
+  /* DIVISOR ROXO SUTIL NO FINAL DE CADA SEÇÃO */
+  border-bottom: 1px solid rgba(122, 62, 230, 0.2);
+}
+
+/* ------------------------------------------ */
+/* 1. NAVEGAÇÃO E HEADER (FIXO) */
+/* ------------------------------------------ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px;
+  background: #1a0833;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 28px;
+  color: var(--cor-acento-roxo);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a {
+  font-size: 18px;
+  color: var(--cor-texto-principal);
+  text-decoration: none;
+  margin-left: 35px;
+  transition: color var(--transicao-rapida);
+}
+
+.navbar a:hover {
+  color: var(--cor-acento-roxo);
+}
+
+/* Botão de Contato */
+.btn-contato {
+  background: var(--cor-texto-principal);
+  color: var(--cor-fundo-principal) !important;
+  border: 1px solid var(--cor-texto-principal);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+/* ------------------------------------------ */
+/* 2. SEÇÃO HOME (HERO) com EFEITO DE ANEL PULSANTE */
+/* ------------------------------------------ */
+.home {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px var(--padding-geral);
+}
+
+.home-content {
+  max-width: 55%;
+}
+
+.home-content p:first-child {
+  color: var(--cor-acento-roxo);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.home-content h1 {
+  font-size: 50px;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.home-content h1 strong {
+  color: var(--cor-acento-roxo);
+}
+
+.cta-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 25px;
+  background: var(--cor-acento-roxo);
+  color: var(--cor-texto-principal);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background var(--transicao-rapida);
+}
+.btn-primary:hover {
+  background: #9a68ff;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 25px;
+  background: transparent;
+  color: var(--cor-texto-principal);
+  border: 2px solid var(--cor-texto-principal);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background var(--transicao-rapida), color var(--transicao-rapida);
+}
+.btn-secondary:hover {
+  background: var(--cor-texto-principal);
+  color: var(--cor-fundo-principal);
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-links a {
+  color: var(--cor-texto-principal);
+  font-size: 22px;
+  margin-right: 15px;
+  transition: color var(--transicao-rapida);
+}
+.social-links a:hover {
+  color: var(--cor-acento-roxo);
+}
+
+/* EFEITO DO ANEL PULSANTE */
+.home-avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+}
+
+.ring-effect {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+  border: 3px solid rgba(122, 62, 230, 0.5);
+
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+.ring-effect img {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--cor-fundo-principal);
+  z-index: 2;
+}
+
+/* ------------------------------------------ */
+/* 3. CARROSSEL INFINITO */
+/* ------------------------------------------ */
+.carrossel-container {
+  overflow: hidden;
+  background-color: #1a0833;
+  padding: 15px 0;
+  white-space: nowrap;
+  margin-top: 50px;
+}
+
+.carrossel-faixa {
+  display: flex;
+  gap: 40px;
+  animation: moveCarrossel 55s linear infinite;
+  padding-left: 20%;
+}
+
+@keyframes moveCarrossel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.tag-item {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--cor-texto-principal);
+  font-size: 16px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.tag-item:hover,
+.tag-item.active {
+  background-color: rgba(122, 62, 230, 0.5);
+}
+
+/* ------------------------------------------ */
+/* 4. SEÇÃO PROJETOS */
+/* ------------------------------------------ */
+.projetos,
+.servicos,
+.ferramentas {
+  text-align: center;
+}
+
+.projetos h2,
+.servicos h2,
+.ferramentas h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.projetos h2 strong,
+.ferramentas h2 strong {
+  color: var(--cor-acento-roxo);
+}
+
+.projetos .subtitle,
+.servicos .subtitle {
+  color: var(--cor-texto-secundario);
+  margin-bottom: 50px;
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.projetos {
+  text-align: center;
+  /* EFEITO DE GRADIENTE ROXO SUAVE: Adiciona um brilho sutil no fundo */
+  background-image: radial-gradient(
+    circle at top center,
+    rgba(122, 62, 230, 0.05) 0%,
+    rgba(10, 10, 10, 1) 40%
+  );
+}
+
+.projeto-card {
+  background: var(--cor-fundo-secundario);
+  border-radius: 10px 40px 10px 40px;
+  padding: 20px;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transicao-rapida),
+    box-shadow var(--transicao-rapida);
+}
+
+.projeto-card:hover {
+  transform: translateY(-5px);
+  /* NOVO: Box-shadow roxo suave no hover */
+  box-shadow: 0 5px 25px rgba(122, 62, 230, 0.4);
+}
+
+.projeto-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px 30px 5px 30px;
+  margin-bottom: 15px;
+}
+.projeto-card h3 {
+  color: var(--cor-acento-roxo);
+  margin-bottom: 5px;
+}
+.card-tags {
+  margin-top: 10px;
+}
+.tech-tag {
+  display: inline-block;
+  background: #282828;
+  color: var(--cor-texto-secundario);
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+/* ------------------------------------------ */
+/* 5. SEÇÃO SERVIÇOS */
+/* ------------------------------------------ */
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.servicos {
+  text-align: center;
+  /* EFEITO DE GRADIENTE ROXO SUAVE: Adiciona um brilho sutil no fundo */
+  background-image: radial-gradient(
+    circle at left center,
+    rgba(122, 62, 230, 0.05) 0%,
+    rgba(10, 10, 10, 1) 35%
+  );
+}
+
+.servico-item {
+  background: var(--cor-fundo-secundario);
+  padding: 25px;
+  border-radius: var(--borda-radius);
+  text-align: left;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.servico-item:hover {
+  transform: translateY(-3px);
+  /* NOVO: Box-shadow roxo suave no hover */
+  box-shadow: 0 5px 20px rgba(122, 62, 230, 0.3);
+}
+
+.servico-item h3 {
+  color: var(--cor-acento-roxo);
+  margin-bottom: 10px;
+}
+
+/* ------------------------------------------ */
+/* 6. SEÇÃO FERRAMENTAS (CLIQUE/DESCRIÇÃO) */
+/* ------------------------------------------ */
+.ferramentas h2 {
+  margin-bottom: 50px;
+}
+.ferramentas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.ferramenta-logo {
+  text-align: center;
+  width: 120px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.ferramenta-logo:hover {
+  transform: translateY(-5px);
+}
+.ferramenta-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 5px;
+  background: #1e1e1e;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ESTILO DA DESCRIÇÃO (TOOLTIP) */
+.ferramenta-descricao {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: var(--cor-acento-roxo);
+  color: var(--cor-texto-principal);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 200px;
+  line-height: 1.4;
+  z-index: 50;
+
+  /* Ocultar por padrão e aplicar transição */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* MOSTRAR DESCRIÇÃO QUANDO A CLASSE 'active' ESTIVER PRESENTE */
+.ferramenta-logo.active .ferramenta-descricao {
+  opacity: 1;
+  visibility: visible;
+  top: 120%;
+}
+
+/* ------------------------------------------ */
+/* 7. SEÇÃO SOBRE MIM (CORRIGIDA E CENTRALIZADA) */
+/* ------------------------------------------ */
+.sobre {
+  display: flex;
+  gap: 100px;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 50px;
+}
+
+.sobre-content {
+  width: 45%;
+  position: relative;
+  overflow: visible;
+  /* Centraliza o avatar dentro da coluna esquerda */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sobre-texto {
+  width: 55%;
+  padding-top: 40px;
+}
+
+.sobre-texto h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.sobre-texto p {
+  color: var(--cor-texto-secundario);
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.sobre-avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+/* Anel de efeito (380px) */
+.ring-effect-small {
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+
+  /* CORREÇÃO VITAL: Centraliza a imagem no centro do anel */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+  border: 3px solid rgba(122, 62, 230, 0.5);
+  box-shadow: 0 0 10px rgba(122, 62, 230, 0.4),
+    inset 0 0 15px rgba(122, 62, 230, 0.5);
+}
+
+/* Imagem (350px sem borda) */
+.ring-effect-small img {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: none; /* SEM BORDA PRETA */
+  z-index: 1; /* Fica atrás das tags */
+}
+
+/* Estilo das Tags de Especialidade (ao redor do avatar) */
+.sobre-tags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tag-sobre {
+  position: absolute;
+  font-size: 14px;
+  padding: 7px 15px;
+  border-radius: 50px;
+  color: var(--cor-texto-principal);
+  font-weight: bold;
+  white-space: nowrap;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 10; /* Fica na frente da imagem */
+}
+
+/* Definição de Cores */
+.tag-roxo {
+  background: #7a3ee6;
+}
+.tag-azul {
+  background: #3498db;
+}
+.tag-roxo-claro {
+  background: #9b59b6;
+}
+.tag-amarelo {
+  background: #f1c40f;
+}
+
+/* POSICIONAMENTO ESPECÍFICO (5 TAGS) */
+/* Full Stack (1) */
+.sobre-tags .tag-roxo:nth-child(1) {
+  top: 5%;
+  left: 15%;
+  transform: rotate(-10deg);
+}
+/* WebDesigner (2) */
+.sobre-tags .tag-azul:nth-child(2) {
+  top: 15%;
+  right: 10%;
+  transform: rotate(15deg);
+}
+/* Back-end (3) */
+.sobre-tags .tag-roxo-claro:nth-child(3) {
+  top: 45%;
+  left: 0%;
+  transform: rotate(-5deg);
+}
+/* Front-end (4) */
+.sobre-tags .tag-roxo-claro:nth-child(4) {
+  bottom: 10%;
+  left: 20%;
+  transform: rotate(-5deg);
+}
+/* Banco de Dados (5) */
+.sobre-tags .tag-amarelo:nth-child(5) {
+  bottom: 20%;
+  right: 5%;
+  transform: rotate(10deg);
+}
+
+/* ------------------------------------------ */
+/* 8. SEÇÃO CONTATO */
+/* ------------------------------------------ */
+.contato {
+  /* Define o fundo para a cor principal do site */
+  background-color: var(--cor-fundo-principal);
+  padding: 80px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+.contato-info {
+  max-width: 50%;
+}
+
+.contato-info h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.contato-info .call-to-action {
+  font-size: 20px;
+  color: var(--cor-texto-principal);
+  margin-bottom: 30px;
+}
+
+.contato-info .call-to-action strong {
+  color: var(--cor-acento-roxo);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: var(--cor-texto-secundario);
+}
+
+.info-item i {
+  color: var(--cor-acento-roxo);
+  margin-right: 15px;
+  font-size: 20px;
+  width: 25px;
+  text-align: center;
+}
+
+.btn-enviar {
+  margin-top: 30px;
+  background: var(--cor-acento-roxo);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.contato-avatar img {
+  width: 350px;
+  height: auto;
+}
+
+/* ------------------------------------------ */
+/* ANIMAÇÕES (KEYFRAMES) */
+/* ------------------------------------------ */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(122, 62, 230, 0.3),
+      0 0 10px rgba(122, 62, 230, 0.1), inset 0 0 10px rgba(122, 62, 230, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(122, 62, 230, 0.8),
+      0 0 40px rgba(122, 62, 230, 0.5), inset 0 0 25px rgba(122, 62, 230, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(122, 62, 230, 0.3),
+      0 0 10px rgba(122, 62, 230, 0.1), inset 0 0 10px rgba(122, 62, 230, 0.4);
+  }
+}
+/* ------------------------------------------ */
+/* 9. RODAPÉ (FOOTER) - Direitos Autorais */
+/* ------------------------------------------ */
+.footer {
+  background: var(--cor-fundo-principal);
+  color: var(--cor-texto-secundario);
+  text-align: center;
+  padding: 20px 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+}
+/* ------------------------------------------ */
+/* 10. RESPONSIVIDADE (MOBILE / TABLET) */
+/* ------------------------------------------ */
+
+@media (max-width: 768px) {
+    
+    /* Global: Reduz o padding e centraliza textos */
+    section {
+        padding: 40px 5%; /* Reduz o padding lateral em telas pequenas */
+        text-align: center;
+    }
+    
+    /* Header (Navegação) */
+    .header {
+        padding: 15px 5%;
+        /* Você pode querer mudar a navegação para um menu hambúrguer aqui. */
+        /* Para simplificar agora, faremos ajustes de layout: */
+    }
+
+    .navbar a {
+        margin-left: 15px; /* Reduz a distância entre os links */
+        font-size: 16px;
+    }
+    
+    /* Seção Home (Hero) */
+    .home {
+        flex-direction: column; /* Coloca os itens (texto e avatar) um em cima do outro */
+        padding-top: 80px; /* Garante que o conteúdo não fique debaixo do header fixo */
+        min-height: auto; /* Permite que a altura seja determinada pelo conteúdo */
+    }
+
+    .home-content, .home-avatar {
+        max-width: 100%; /* Ocupa a largura total */
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-content h1 {
+        font-size: 36px; /* Reduz o tamanho do título principal */
+    }
+    
+    .cta-buttons {
+        justify-content: center; /* Centraliza os botões */
+    }
+    
+    .home-avatar {
+        margin-top: 40px;
+    }
+    
+    /* Anel Pulsante (Reduz o tamanho para caber na tela) */
+    .ring-effect {
+        width: 250px; 
+        height: 250px;
+        border-width: 2px;
+    }
+    
+    .ring-effect img {
+        width: 230px; 
+        height: 230px;
+    }
+
+    /* Seção Projetos e Serviços */
+    .projetos-grid, .servicos-grid {
+        grid-template-columns: 1fr; /* Força os cards a ficarem em uma única coluna */
+        gap: 20px;
+    }
+
+    .projetos h2, .servicos h2, .ferramentas h2 {
+        font-size: 32px; /* Reduz o título das seções */
+    }
+    
+    /* Seção Ferramentas */
+    .ferramentas-grid {
+        gap: 15px;
+    }
+    
+    /* Seção Sobre Mim */
+    .sobre {
+        flex-direction: column; /* Coloca o avatar em cima do texto */
+        gap: 30px;
+        align-items: center;
+    }
+    
+    .sobre-content, .sobre-texto {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .sobre-avatar {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* Anel Pequeno (Sobre Mim) */
+    .ring-effect-small {
+        width: 280px; 
+        height: 280px;
+    }
+    
+    .ring-effect-small img {
+        width: 260px; 
+        height: 260px;
+    }
+    
+    /* Tags ao redor do avatar (Reajusta posições) */
+    .tag-sobre {
+        font-size: 12px; 
+        padding: 5px 10px;
+    }
+    /* Posicionamento (Simplificado ou ajustado) */
+    .sobre-tags .tag-roxo:nth-child(1) { top: 0%; left: 5%; } 
+    .sobre-tags .tag-azul:nth-child(2) { top: 10%; right: 5%; } 
+    .sobre-tags .tag-roxo-claro:nth-child(3) { top: 45%; left: -5%; } /* Move um pouco para o lado */
+    .sobre-tags .tag-roxo-claro:nth-child(4) { bottom: 0%; left: 10%; }
+    .sobre-tags .tag-amarelo:nth-child(5) { bottom: 10%; right: 5%; }
+
+
+    /* Seção Contato */
+    .contato {
+        flex-direction: column; /* Coloca informação em cima do avatar */
+        gap: 30px;
+    }
+    
+    .contato-info {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .contato-avatar img {
+        width: 250px; 
+    }
+    
+    .info-item {
+        justify-content: center; /* Centraliza itens de contato */
+    }
+}
